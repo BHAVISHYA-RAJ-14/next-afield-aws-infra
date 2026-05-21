@@ -70,8 +70,8 @@ module "rds" {
   private_subnets = module.vpc.private_subnets
   
   # Note: In a production environment, this would be fetched from AWS Secrets Manager.
-  # For this lab, we are passing it directly.
-  db_password     = "SuperSecretPassword123!" 
+  # Dynamically fetching password from a secure local variable
+  db_password     = var.db_password 
 }
 
 # ==========================================
