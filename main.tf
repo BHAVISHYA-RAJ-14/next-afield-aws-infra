@@ -30,7 +30,7 @@ module "vpc" {
   vpc_name    = "next-afield-vpc"
   environment = "dev"
   cidr_block  = "10.0.0.0/16"
-  
+
   # Deploying across two Availability Zones for high availability
   azs             = ["us-east-1a", "us-east-1b"]
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
@@ -62,16 +62,16 @@ module "eks" {
 module "rds" {
   source = "./modules/rds"
 
-  environment     = "dev"
-  
+  environment = "dev"
+
   # Dynamically fetching network data from the VPC module
   vpc_id          = module.vpc.vpc_id
-  vpc_cidr        = "10.0.0.0/16" 
+  vpc_cidr        = "10.0.0.0/16"
   private_subnets = module.vpc.private_subnets
-  
+
   # Note: In a production environment, this would be fetched from AWS Secrets Manager.
   # Dynamically fetching password from a secure local variable
-  db_password     = var.db_password 
+  db_password = var.db_password
 }
 
 # ==========================================
@@ -80,8 +80,8 @@ module "rds" {
 module "elasticache" {
   source = "./modules/elasticache"
 
-  environment     = "dev"
-  
+  environment = "dev"
+
   # Dynamically fetching network data from the VPC module
   vpc_id          = module.vpc.vpc_id
   vpc_cidr        = "10.0.0.0/16"

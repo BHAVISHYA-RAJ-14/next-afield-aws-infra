@@ -4,11 +4,11 @@ provider "aws" {
 
 # 1. S3 Bucket to store the Terraform state file
 resource "aws_s3_bucket" "terraform_state" {
-  bucket        = "next-afield-tf-state-bhavishya"
-  
+  bucket = "next-afield-tf-state-bhavishya"
+
   # Note: Set to true for lab teardown convenience. 
   # In production, this must always be false to prevent accidental deletion.
-  force_destroy = true 
+  force_destroy = true
 }
 
 # 2. Enable versioning to roll back if the state file gets corrupted
