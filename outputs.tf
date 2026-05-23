@@ -25,10 +25,10 @@ output "cluster_name" {
 
 output "rds_endpoint" {
   description = "The connection endpoint for the RDS instance"
-  value       = module.rds.db_instance_endpoint
+  value       = module.rds.db_endpoint
 }
 
 output "redis_endpoint" {
   description = "The connection endpoint for the Redis cluster"
-  value       = module.elasticache.cache_nodes
+  value       = module.elasticache.redis_endpoint
 }
