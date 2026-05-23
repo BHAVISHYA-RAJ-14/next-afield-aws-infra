@@ -10,4 +10,4 @@ projects:
     autoplan:
       when_modified: ["*.tf", "modules/**/*.tf"]
       enabled: true
-    apply_requirements: [approved, mergeable]
+    apply_requirements: [mergeable]
