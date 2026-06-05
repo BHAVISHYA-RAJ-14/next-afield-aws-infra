@@ -1,13 +1,13 @@
 name: Infrastructure Drift Detection
 on:
   schedule:
-    # Runs automatically every day at 8:00 AM UTC
     - cron: '0 8 * * *'
-  workflow_dispatch: # Allows manual trigger from the UI
+  workflow_dispatch:
 
 jobs:
   detect-drift:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -27,6 +27,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      # The detailed-exitcode flag returns an error if changes are detected, failing the pipeline and sending you an alert
       - name: Check for Drift
-        run: terraform plan -detailed-exitcode
+        timeout-minutes: 10
+        run: terraform plan -detailed-exitcode -lock=false
